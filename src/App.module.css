@@ -1,0 +1,73 @@
+body {
+  background: linear-gradient(107.32deg, #804bd8 5.53%, #544ad8 97.3%);
+}
+
+.container {
+  display: grid;
+  gap: 10px;
+  grid-template-rows: repeat(5, 1fr);
+  max-width: 1600px;
+  grid-auto-flow: column;
+  margin-top: 20px;
+}
+
+.container > div {
+  font-size: 20px;
+  color: white;
+  border: 2px solid white;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.container > .info:hover {
+  border: 2px solid #00fff2;
+  color: #00fff2;
+  transition: 0.2s;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.container > .title:hover {
+  border: 2px solid white;
+  color: white;
+}
+
+.container > .found_info {
+  border: 2px solid red;
+  color: red;
+}
+
+.container > .found_info:hover {
+  border: 2px solid red;
+  color: red;
+}
+
+.text {
+  font-size: 20px;
+  color: white;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.input {
+  padding: 5px 5px;
+  margin: 8px 0;
+  margin-right: 5px;
+}
+
+.footer {
+  margin-top: 15px;
+  color: white;
+  font-size: 15px;
+}
+
+@media (max-width: 420px) {
+  .container {
+    grid-template-columns: 1fr;
+    grid-auto-flow: row;
+  }
+}
