@@ -29,8 +29,7 @@ const data = [
 function App() {
   const [inputValue, setinputValue] = useState('  ')
   const [valueOnSubmit, setvalueOnSubmit] = useState('  ')
-
-  const chosenColumn = 2
+  const [chosenColId, setchosenColId] = useState(0)
 
   function onChange(e) {
     setinputValue(e.target.value);
@@ -46,7 +45,7 @@ function App() {
 
   const foundData = []
   data.map((i, colId) => {
-    if ((colId === chosenColumn)) {
+    if ((colId === chosenColId)) {
       i.info.filter(data => (data.toLowerCase().includes(valueOnSubmit.toLowerCase()))).map((r) => (foundData.push(r)))
     }
     return i
@@ -55,6 +54,17 @@ function App() {
   return (
     <div>
       <div>
+        <label>
+          <div className={styles.text}>Выберите столбец, по которому будет осуществляться поиск:</div>
+          <select className={styles.input} value={chosenColId} onChange={(e) => (setchosenColId(Number(e.target.value)))}>
+            {data.map((d, index) => {
+              return (
+                <option key={index} value={index}>{d.title}</option>
+              )
+            })}
+          </select>
+          <div className={styles.text}>Выбран поиск по {chosenColId + 1} столбцу.</div>
+        </label>
         <form onSubmit={(e) => { handleSubmit(e) }}>
           <input
             className={styles.input}
@@ -64,7 +74,6 @@ function App() {
           />
           <input className={styles.input} type="submit" value="Поиск" />
         </form>
-        <div className={styles.text}>Выбран поиск по {chosenColumn + 1} столбцу.</div>
         {foundData.length !== 0 ? <div className={styles.text}>Количество найденных совпадений: {foundData.length}</div> : <div className={styles.text}>Ничего не найдено.</div>}
       </div>
       <div className={styles.container}>
